@@ -12,7 +12,7 @@ def nothing(x):
 def show_hsv():
     global phMin, psMin, pvMin, phMax, psMax, pvMax
     # Print if there is a change in HSV value
-    if ((phMin != hMin) | (psMin != sMin) | (pvMin != vMin) | (phMax != hMax) | (psMax != sMax) | (pvMax != vMax)):
+    if (phMin != hMin) | (psMin != sMin) | (pvMin != vMin) | (phMax != hMax) | (psMax != sMax) | (pvMax != vMax):
         print("(hMin = %d , sMin = %d, vMin = %d), (hMax = %d , sMax = %d, vMax = %d)" % (
             hMin, sMin, vMin, hMax, sMax, vMax))
         phMin = hMin
@@ -48,12 +48,12 @@ def init_setup():
     cv2.createTrackbar('SMax', WINDOW_NAME, 0, 255, nothing)
     cv2.createTrackbar('VMax', WINDOW_NAME, 0, 255, nothing)
     # Set default value for Max HSV trackbars
-    cv2.setTrackbarPos('HMin', WINDOW_NAME, 19)
-    cv2.setTrackbarPos('SMin', WINDOW_NAME, 0)
-    cv2.setTrackbarPos('VMin', WINDOW_NAME, 11)
-    cv2.setTrackbarPos('HMax', WINDOW_NAME, 105)
+    cv2.setTrackbarPos('HMin', WINDOW_NAME, 90)
+    cv2.setTrackbarPos('SMin', WINDOW_NAME, 50)
+    cv2.setTrackbarPos('VMin', WINDOW_NAME, 70)
+    cv2.setTrackbarPos('HMax', WINDOW_NAME, 128)
     cv2.setTrackbarPos('SMax', WINDOW_NAME, 255)
-    cv2.setTrackbarPos('VMax', WINDOW_NAME, 132)
+    cv2.setTrackbarPos('VMax', WINDOW_NAME, 255)
     # Initialize HSV min/max values
     hMin = sMin = vMin = hMax = sMax = vMax = 0
     phMin = psMin = pvMin = phMax = psMax = pvMax = 0
@@ -68,7 +68,7 @@ cap = cv2.VideoCapture(0)
 _, background = cap.read()
 time.sleep(2)
 
-while (cap.isOpened()):
+while cap.isOpened():
     # Get the frame in realtime
     _, frame = cap.read()
 
